@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO Details</title>
+    <link rel="stylesheet" href="info.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script>
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+         
+         // Setting text of element P with id gfg
+         $("#currentIp").html(data.ip);
+     })
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="about" id="about">
+            <div class="currentIp">
+                IP Address : <span id="currentIp"></span>
+            </div>
+            <!-- <div class="ipDetails" id="ipDetails">
+                <section class="ipDetailsSection">
+                    <p>Lat: <span id="lat"></span></p>
+                    <p>Long: <span id="long"></span></p>
+                    
+                </section>
+                <section class="ipDetailsSection">
+                    <p>City: <span id="city"></span></p>
+                    <p>Region: <span id="region"></span></p>
+                    
+                </section>
+
+                <section class="ipDetailsSection">
+                    <p>Organisation: <span id="org">XYZyeshakicn</span></p>
+                    <p>Time Zone: <span id="time-zone">XYZ</span></p>
+                </section>
+            </div> -->
+        </div>
+        <div class="location-info" id="location-info">
+            <h3>Your Current Location </h3>
+            <div id="googleMap">
+                <iframe frameborder="0" style="border:0"></iframe>
+            </div>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="info.js"></script>
+</body>
+</html>
