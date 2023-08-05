@@ -6,6 +6,8 @@ const cuurentIp=document.getElementById('currentIp').innerText;
 // const longtitude=document.getElementById('long');
 // const organisation=document.getElementById('org');
 // const timeZone=document.getElementById('time-zone');
+let poContainer=document.getElementById('poContainer');
+let searchBtn=document.getElementById('searchPoInput');
 let result1;
 const about=document.getElementById('about');
     async function loadIp(){
@@ -85,7 +87,55 @@ const about=document.getElementById('about');
             let totalPO=countPo[0].PostOffice.length;
             let count=document.getElementById('pincode-count');
             count.innerHTML=totalPO;
-            console.log(countPo[0].PostOffice[7])
+            // now rendering all po details
+            let poArray=countPo[0].PostOffice;
+           
+            for(let i=0 ; i<poArray.length ; i++){
+                let po = poArray[i];
+                let name=po.Name;
+                let branchType=po.BranchType;
+                let deliverStatus=po.DeliveryStatus;
+                let district=po.District;
+                let division=po.Division;
+                //now adding to container
+                let newElement=document.createElement('div');
+                newElement.className='poDetails';
+                newElement.innerHTML=`
+                <h4>Name : <span id="poName">${name}</span></h4>
+                <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
+                <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
+                <h4>District : <span id="district">${district}</span></h4>
+                <h4>Division : <span id="division">${division}</span></h4>
+                `;
+                poContainer.appendChild(newElement);
+            }
+            // searchBtn.addEventListener('keyup',(eve)=>{
+            //     let str=eve.target.value.toLowerCase();
+            //     for(let i=0 ; i<poArray.length ; i++){
+            //         let po = poArray[i];
+            //         let name=po.Name.toLowerCase();
+            //         let branchType=po.BranchType.toLowerCase();
+            //         let deliverStatus=po.DeliveryStatus;
+            //         let district=po.District;
+            //         let division=po.Division;
+            //         if(name.includes(str) || branchType.includes(str)){
+            //             console.log(name,branchType);
+            //             //now adding to container
+            //             // poContainer.innerHTML='';
+            //          let newElement=document.createElement('div');
+            //           newElement.className='poDetails';
+            //           newElement.innerHTML=`
+            //         // <h4>Name : <span id="poName">${name}</span></h4>
+            //         // <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
+            //         // <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
+            //         // <h4>District : <span id="district">${district}</span></h4>
+            //         // <h4>Division : <span id="division">${division}</span></h4>
+            //         // `;
+            //          poContainer.appendChild(newElement);
+            //         }
+                    
+            //     }
+            // })
         });
        
      });
@@ -109,10 +159,4 @@ const about=document.getElementById('about');
 
     
      
-    //  function xyz(){
-    //     let x=10;
-    //     ans=x;
-    //  }
-    //  xyz();
-    //  console.log(ans);
-     
+   
