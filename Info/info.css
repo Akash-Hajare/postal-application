@@ -58,4 +58,91 @@ p{
     left: 853px;
     border: 5px solid green;
 }
-
+.more-info{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid rebeccapurple;
+    align-items: center;
+    padding: 20px;
+}
+.more-info h1 {
+    font-family: Montserrat;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 59px;
+    letter-spacing: 0em;
+    text-align: center;    
+}
+.more-info-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    gap: 0px;
+}
+.more-info-items p{
+    font-family: Inter;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 41px;
+    letter-spacing: 0em;
+    text-align: left; 
+    margin: 10px;  
+    color: rgba(184, 188, 204, 0.5);
+    max-width: 100%;
+}
+.more-info-items p span{
+    color: white;
+}
+.poInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.poInfo h1{
+    font-family: Montserrat;
+font-size: 48px;
+font-weight: 700;
+line-height: 59px;
+letter-spacing: 0em;
+text-align: center;
+}
+.searchPO{
+    width: 100%;
+    text-align: center;
+}
+ .searchPO input{
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 30px;
+    color: rgb(226, 214, 214);
+    font-size: 22px;
+    background-color: black;
+}
+.poContainer{
+    border: 5px solid yellow;
+    width: 90%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2,50%);
+    margin-top: 20px;
+}
+.poDetails{
+    display: flex;
+    flex-direction: column;
+    width:85%;
+    height: 399px;
+    left: 53px;
+    border-radius: 10px;
+    border: 5px solid blue;
+    padding: 20px;
+} .poDetails h4{
+    font-family: Montserrat;
+    font-size: 28px;
+    font-weight: 700;
+     letter-spacing: 0em;
+    text-align: left;
+    margin: 20px;
+} 

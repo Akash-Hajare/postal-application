@@ -6,13 +6,15 @@ const cuurentIp=document.getElementById('currentIp').innerText;
 // const longtitude=document.getElementById('long');
 // const organisation=document.getElementById('org');
 // const timeZone=document.getElementById('time-zone');
+let result1;
 const about=document.getElementById('about');
-    (async function (){
+    async function loadIp(){
         const endpoint = `https://ipinfo.io/${cuurentIp}/geo?token=98a259f6ea6150`;
        try{
         const res=await fetch(endpoint);
          const result= await res.json();
-        //console.log(result);
+         result1=result;
+        // console.log(result1);
         // seperating lat and log 
         let loc=result.loc.split(',');
 
@@ -48,12 +50,45 @@ const about=document.getElementById('about');
     </div>`;
           about.appendChild(newDiv);
           updateGoogleMap(latitude,longtitude);
+          result1=result;
+          return result;
        }
        catch(error){
           console.log(error);
        }
-     })();
-     
+       
+     };
+     loadIp().then(()=>{
+        //updating more info section
+        let time_Zone=document.getElementById('time_Zone');
+        let dateAndTime=document.getElementById('date-time');
+        let pincode=document.getElementById('pincode');
+        let timeZone=result1.timezone;
+        let datetime_str = new Date().toLocaleString("en-US", { timeZone: timeZone });
+        time_Zone.innerHTML=timeZone;
+        dateAndTime.innerHTML=datetime_str;
+        pincode.innerHTML=result1.postal;
+     }).then(()=>{
+        let pin=pincode.innerText;
+       let url = `https://api.postalpincode.in/pincode/${pin}`;
+       async function findNumberOfPO(){
+        try{
+            let count = await fetch(url);
+        let countPo= await count.json();
+         return countPo;
+        }
+        catch(err){
+            console.log(err);
+        }
+       }
+        let countPo=findNumberOfPO().then((countPo) =>{
+            let totalPO=countPo[0].PostOffice.length;
+            let count=document.getElementById('pincode-count');
+            count.innerHTML=totalPO;
+            console.log(countPo[0].PostOffice[7])
+        });
+       
+     });
      // updating google map
      // let long=document.getElementById('long');
      // let lat=document.getElementById('lat');
@@ -71,6 +106,13 @@ const about=document.getElementById('about');
       iFrame.style.width="100%"; 
       iFrame.style.height="100%" ;   
      }
+
+    
      
-     
+    //  function xyz(){
+    //     let x=10;
+    //     ans=x;
+    //  }
+    //  xyz();
+    //  console.log(ans);
      
