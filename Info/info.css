@@ -133,6 +133,7 @@ text-align: center;
     gap: 20px;
     grid-template-columns: repeat(2,50%);
     margin-top: 20px;
+    margin-bottom: 100px;
 }
 .poDetails{
     display: flex;
