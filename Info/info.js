@@ -9,6 +9,8 @@ const cuurentIp=document.getElementById('currentIp').innerText;
 let poContainer=document.getElementById('poContainer');
 let searchBtn=document.getElementById('searchPoInput');
 let searchIocn=document.getElementById('searchIcon');
+let searchPoButton=document.getElementById('searchPOBtn');
+
 let result1;
 const about=document.getElementById('about');
     async function loadIp(){
@@ -73,6 +75,12 @@ const about=document.getElementById('about');
         pincode.innerHTML=result1.postal;
      }).then(()=>{
         let pin=pincode.innerText;
+        //finding search results based on user enter pin
+        // searchPoButton.addEventListener('click',()=>{
+        //    const pinValue=document.getElementById('searchPoByPinInput').value;
+        //    if(pinValue.length != 6)
+        //      alert("Incorrect Pincode. Please Enter 6 digit Pincode"); 
+        // });
        let url = `https://api.postalpincode.in/pincode/${pin}`;
        async function findNumberOfPO(){
         try{
@@ -173,6 +181,44 @@ const about=document.getElementById('about');
       iFrame.style.height="100%" ;   
      }
 
-    
+    //function to search po by pin
+    function searchPoByPin(){
+        const pinValue=document.getElementById('searchPoByPinInput').value;
+           if(pinValue.length != 6)
+             alert("Incorrect Pincode. Please Enter 6 digit Pincode");
+         else{
+            let url = `https://api.postalpincode.in/pincode/${pinValue}`;
+            fetch(url)
+            .then(response => response.json())
+            .then((response)=>{
+            console.log(response[0]);
+
+            let poArray=response[0].PostOffice;
+              poContainer.innerHTML=''; 
+            for(let i=0 ; i<poArray.length ; i++){
+                let po = poArray[i];
+                let name=po.Name;
+                let branchType=po.BranchType;
+                let deliverStatus=po.DeliveryStatus;
+                let district=po.District;
+                let division=po.Division;
+                //now adding to container
+                let newElement=document.createElement('div');
+                newElement.className='poDetails';
+                newElement.innerHTML=`
+                <h4>Name : <span id="poName">${name}</span></h4>
+                <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
+                <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
+                <h4>District : <span id="district">${district}</span></h4>
+                <h4>Division : <span id="division">${division}</span></h4>
+                `;
+                poContainer.appendChild(newElement);
+            }
+              })
+            .catch(error => {
+            console.log(error);
+             })
+         }
+    }
      
-   
+   searchPoButton.addEventListener('click',searchPoByPin);

@@ -120,7 +120,7 @@ text-align: center;
     border-radius: 10px;
     padding-left: 30px;
     color: rgb(226, 214, 214);
-    font-size: 22px;
+    font-size: 1.8rem;
     background-color: black;
     border: none;
 }
@@ -153,3 +153,46 @@ text-align: center;
     text-align: left;
     margin: 20px;
 } 
+.searchPoByPin{
+    border: 1px solid rgb(241, 237, 237);
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    gap: 10%;
+}
+.searchPoByPin p{
+    font-size: 2rem;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 30px;
+}
+.searchPoByPin input{
+    background: black;
+    height: 30px;
+    color: white;
+    font-size: 22px;
+    padding-left: 20px;
+    border: 1px solid white;
+}
+.searchPoByPin button{
+    height: 30px;
+}
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield; /* Others */
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* Adjust this if needed */
+  }
+  .searchPoByPin button{
+    width: auto;
+    height: 30px;
+  }
