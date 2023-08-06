@@ -8,6 +8,7 @@ const cuurentIp=document.getElementById('currentIp').innerText;
 // const timeZone=document.getElementById('time-zone');
 let poContainer=document.getElementById('poContainer');
 let searchBtn=document.getElementById('searchPoInput');
+let searchIocn=document.getElementById('searchIcon');
 let result1;
 const about=document.getElementById('about');
     async function loadIp(){
@@ -109,33 +110,48 @@ const about=document.getElementById('about');
                 `;
                 poContainer.appendChild(newElement);
             }
-            // searchBtn.addEventListener('keyup',(eve)=>{
-            //     let str=eve.target.value.toLowerCase();
-            //     for(let i=0 ; i<poArray.length ; i++){
-            //         let po = poArray[i];
-            //         let name=po.Name.toLowerCase();
-            //         let branchType=po.BranchType.toLowerCase();
-            //         let deliverStatus=po.DeliveryStatus;
-            //         let district=po.District;
-            //         let division=po.Division;
-            //         if(name.includes(str) || branchType.includes(str)){
-            //             console.log(name,branchType);
-            //             //now adding to container
-            //             // poContainer.innerHTML='';
-            //          let newElement=document.createElement('div');
-            //           newElement.className='poDetails';
-            //           newElement.innerHTML=`
-            //         // <h4>Name : <span id="poName">${name}</span></h4>
-            //         // <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
-            //         // <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
-            //         // <h4>District : <span id="district">${district}</span></h4>
-            //         // <h4>Division : <span id="division">${division}</span></h4>
-            //         // `;
-            //          poContainer.appendChild(newElement);
-            //         }
+            //adding search functionality
+            searchIocn.addEventListener('click',()=>{
+                const str=document.getElementById('searchPoInput').value.toLowerCase();
+                poContainer.innerHTML='';
+                for(let i=0 ; i<poArray.length ; i++){
+                    let po = poArray[i];
+                    let name=po.Name.toLowerCase();
+                    let branchType=po.BranchType.toLowerCase();
+                    //checking if str is present in name and brach 
                     
-            //     }
-            // })
+    
+                    let deliverStatus=po.DeliveryStatus;
+                    let district=po.District;
+                    let division=po.Division;
+                    //now adding to container
+                   
+                    if(name.includes(str) || branchType.includes(str)){
+                        let newElement=document.createElement('div');
+                    newElement.className='poDetails';
+                    newElement.innerHTML=`
+                    <h4>Name : <span id="poName">${name}</span></h4>
+                    <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
+                    <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
+                    <h4>District : <span id="district">${district}</span></h4>
+                    <h4>Division : <span id="division">${division}</span></h4>
+                    `;
+                    poContainer.appendChild(newElement);
+                    }
+                    else if(str.length=== 0){
+                        let newElement=document.createElement('div');
+                    newElement.className='poDetails';
+                    newElement.innerHTML=`
+                    <h4>Name : <span id="poName">${name}</span></h4>
+                    <h4>Branch Type : <span id="branchType">${branchType}</span></h4>
+                    <h4>Delivery Status : <span id="deliveryStatus">${deliverStatus}</span></h4>
+                    <h4>District : <span id="district">${district}</span></h4>
+                    <h4>Division : <span id="division">${division}</span></h4>
+                    `;
+                    poContainer.appendChild(newElement);
+                    }
+                }
+            });
         });
        
      });
